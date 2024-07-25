@@ -1,3 +1,4 @@
+import 'package:brew_crew_tutorial/screens/authenticate/register.dart';
 import 'package:brew_crew_tutorial/screens/authenticate/sign_in.dart';
 import 'package:flutter/material.dart';
 
@@ -6,6 +7,6 @@ class Authenticate extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(body: SignIn());
+    return const Scaffold(body: Register());
   }
 }

@@ -1,7 +1,7 @@
 import 'package:brew_crew_tutorial/models/user.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-class AuthService {
+/* class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
   // create user obj based on firebase user
@@ -9,18 +9,6 @@ class AuthService {
     // ignore: unnecessary_null_comparison
     return user != null ? AppUser(uid: user.uid) : null;
   }
-
-/*   // auth change user stream
-  Stream<AppUser> get user {
-    // In the new library version, onAuthStateChange is deprecated and authStateChanges is now a method, so you need to put () after it.
-    // ChatGPT gave me the following corrected version of the tutorial snippet:
-    return _auth
-        .authStateChanges()
-        .map(_userFromFirebaseUser)
-        .where((appUser) => appUser != null)
-        .cast<AppUser>(); // Cast the stream to the correct type
-  }
- */
 
   // sign in anon
   Future<AppUser?> signInAnon() async {
@@ -48,4 +36,4 @@ class AuthService {
       print(e.toString());
     }
   }
-}
+} */

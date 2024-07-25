@@ -2,15 +2,14 @@ import 'package:brew_crew_tutorial/screens/authenticate/auth_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class SignIn extends StatefulWidget {
-  const SignIn({super.key});
+class Register extends StatefulWidget {
+  const Register({super.key});
 
   @override
-  State<SignIn> createState() => _SignInState();
+  State<Register> createState() => _RegisterState();
 }
 
-class _SignInState extends State<SignIn> {
-  // text field state
+class _RegisterState extends State<Register> {
   String email = '';
   String password = '';
 
@@ -23,22 +22,10 @@ class _SignInState extends State<SignIn> {
         appBar: AppBar(
           backgroundColor: Colors.brown[400],
           elevation: 0.0,
-          title: const Text('Sign in to BrewCrew'),
+          title: const Text('Sign up to BrewCrew'),
         ),
         body: Container(
           padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 50.0),
-          /* child: ElevatedButton(
-            child: const Text('Sign in Anon'),
-            onPressed: () async {
-              dynamic result = await authNotifier.signInAnon();
-              if (result == null) {
-                print('error signing in');
-              } else {
-                print('sign in successful');
-                print(result);
-              }
-            },
-          ), */
           child: Form(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 50.0),
@@ -66,7 +53,7 @@ class _SignInState extends State<SignIn> {
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.pink[400],
                     ),
-                    child: const Text('Sign in',
+                    child: const Text('Register',
                         style: TextStyle(color: Colors.white)),
                   ),
                 ],
