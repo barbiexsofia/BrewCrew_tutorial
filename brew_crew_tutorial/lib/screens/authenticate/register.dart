@@ -3,7 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class Register extends StatefulWidget {
-  const Register({super.key});
+  final Function toggleView;
+  Register({required this.toggleView});
+
+  //const Register({super.key});
 
   @override
   State<Register> createState() => _RegisterState();
@@ -23,6 +26,16 @@ class _RegisterState extends State<Register> {
           backgroundColor: Colors.brown[400],
           elevation: 0.0,
           title: const Text('Sign up to BrewCrew'),
+          actions: <Widget>[
+            TextButton.icon(
+              icon: const Icon(Icons.person),
+              onPressed: () async {
+                widget.toggleView();
+                print('succesfully Signed in!');
+              },
+              label: const Text('Sign in'),
+            ),
+          ],
         ),
         body: Container(
           padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 50.0),
