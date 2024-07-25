@@ -1,4 +1,4 @@
-//import 'package:brew_crew_tutorial/screens/home/home.dart';
+import 'package:brew_crew_tutorial/screens/home/home.dart';
 import 'package:brew_crew_tutorial/models/user.dart';
 import 'package:brew_crew_tutorial/screens/authenticate/authenticate.dart';
 import 'package:flutter/material.dart';
@@ -10,9 +10,14 @@ class Wrapper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<AppUser?>(context);
-    print("pippo:");
-    print(user);
-    // return either Home or Authenticate widget;
-    return Authenticate();
+    print('Wrapper rebuild with user: ${user?.uid}');
+
+    if (user == null) {
+      print("Wrapper says: user is null");
+      return Authenticate();
+    } else {
+      print("Wrapper says: user is not null!");
+      return Home();
+    }
   }
 }

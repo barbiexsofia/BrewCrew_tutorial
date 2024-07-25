@@ -22,6 +22,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StreamProvider<AppUser?>.value(
+      catchError: (_, __) => null,
       value: AuthService().user,
       // Added initialData: User() as per stackoverflow, else it gives error
       initialData: null,

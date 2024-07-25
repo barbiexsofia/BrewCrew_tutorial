@@ -1,5 +1,6 @@
 import 'package:brew_crew_tutorial/models/user.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:provider/provider.dart';
 
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -39,4 +40,12 @@ class AuthService {
   // register with email and password
 
   // sign out
+  Future<void> signOut() async {
+    try {
+      print("logged out");
+      return _auth.signOut();
+    } catch (e) {
+      print(e.toString());
+    }
+  }
 }
