@@ -1,18 +1,14 @@
-import 'package:brew_crew_tutorial/services/auth.dart';
+import 'package:brew_crew_tutorial/screens/authenticate/auth_notifier.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-class SignIn extends StatefulWidget {
+class SignIn extends StatelessWidget {
   const SignIn({super.key});
 
   @override
-  State<SignIn> createState() => _SignInState();
-}
-
-class _SignInState extends State<SignIn> {
-  final AuthService _auth = AuthService();
-
-  @override
   Widget build(BuildContext context) {
+    final authNotifier = Provider.of<AuthNotifier>(context);
+
     return Scaffold(
         backgroundColor: Colors.brown[100],
         appBar: AppBar(
@@ -25,7 +21,7 @@ class _SignInState extends State<SignIn> {
           child: ElevatedButton(
             child: const Text('Sign in Anon'),
             onPressed: () async {
-              dynamic result = await _auth.signInAnon();
+              dynamic result = await authNotifier.signInAnon();
               if (result == null) {
                 print('error signing in');
               } else {

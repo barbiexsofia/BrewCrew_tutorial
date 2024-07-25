@@ -1,5 +1,5 @@
+import 'package:brew_crew_tutorial/screens/authenticate/auth_notifier.dart';
 import 'package:brew_crew_tutorial/screens/home/home.dart';
-import 'package:brew_crew_tutorial/models/user.dart';
 import 'package:brew_crew_tutorial/screens/authenticate/authenticate.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -9,7 +9,9 @@ class Wrapper extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final user = Provider.of<AppUser?>(context);
+    final authNotifier = Provider.of<AuthNotifier>(context);
+    final user = authNotifier.currentUser;
+
     print('Wrapper rebuild with user: ${user?.uid}');
 
     if (user == null) {

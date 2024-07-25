@@ -23,13 +23,17 @@ class AuthNotifier extends ChangeNotifier {
 
   Future<void> signOut() async {
     await _auth.signOut();
+    _currentUser = null;
+    notifyListeners();
   }
 
   Future<AppUser?> signInAnon() async {
     try {
       UserCredential result = await _auth.signInAnonymously();
       User? user = result.user;
-      return _userFromFirebaseUser(user);
+      _currentUser = _userFromFirebaseUser(user);
+      notifyListeners();
+      return _currentUser;
     } catch (e) {
       print(e.toString());
       return null;
