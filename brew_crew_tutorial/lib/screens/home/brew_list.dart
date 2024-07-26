@@ -1,3 +1,4 @@
+import 'package:brew_crew_tutorial/screens/home/brew_tile.dart';
 import 'package:brew_crew_tutorial/services/database.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -28,13 +29,7 @@ class _BrewListState extends State<BrewList> {
         : ListView.builder(
             itemCount: brews.length,
             itemBuilder: (context, index) {
-              final brew = brews[index];
-              return ListTile(
-                title: Text(brew.name),
-                subtitle: Text(
-                    'Takes ${brew.sugars} sugar(s). Strength: ${brew.strength}'),
-              );
-            },
-          );
+              return BrewTile(brew: brews[index]);
+            });
   }
 }
