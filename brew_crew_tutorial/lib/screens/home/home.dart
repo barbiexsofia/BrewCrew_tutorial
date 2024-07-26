@@ -3,7 +3,6 @@ import 'package:brew_crew_tutorial/services/auth_notifier.dart';
 import 'package:brew_crew_tutorial/services/database.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
-import 'package:brew_crew_tutorial/models/brew.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});
@@ -12,6 +11,17 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     final authNotifier = Provider.of<AuthNotifier>(context);
     final user = authNotifier.currentUser;
+
+    void _showSettingsPanel() {
+      showModalBottomSheet(
+          context: context,
+          builder: (context) {
+            return Container(
+              padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 60.0),
+              child: const Text('bottom sheet'),
+            );
+          });
+    }
 
     return ChangeNotifierProvider(
       create: (_) =>
@@ -31,7 +41,12 @@ class Home extends StatelessWidget {
                 print('succesfully logged out!');
               },
               label: const Text('Logout'),
-            )
+            ),
+            TextButton.icon(
+              icon: const Icon(Icons.settings),
+              label: const Text('settings'),
+              onPressed: () => _showSettingsPanel(),
+            ),
           ],
         ),
         body: const BrewList(),
