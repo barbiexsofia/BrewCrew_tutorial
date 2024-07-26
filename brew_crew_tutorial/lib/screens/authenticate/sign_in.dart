@@ -1,5 +1,6 @@
 import 'package:brew_crew_tutorial/models/user.dart';
 import 'package:brew_crew_tutorial/screens/authenticate/auth_notifier.dart';
+import 'package:brew_crew_tutorial/shared/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -59,6 +60,7 @@ class _SignInState extends State<SignIn> {
             children: <Widget>[
               const SizedBox(height: 20.0),
               TextFormField(
+                decoration: textInputDecoration.copyWith(hintText: 'E-mail'),
                 validator: (val) => val!.isEmpty || !val.contains("@")
                     ? 'Enter an email'
                     : null,
@@ -69,6 +71,7 @@ class _SignInState extends State<SignIn> {
               const SizedBox(height: 20.0),
               TextFormField(
                 obscureText: true,
+                decoration: textInputDecoration.copyWith(hintText: 'Password'),
                 validator: (val) =>
                     val!.length < 6 ? 'Enter a password 6+ chars long' : null,
                 onChanged: (val) {
