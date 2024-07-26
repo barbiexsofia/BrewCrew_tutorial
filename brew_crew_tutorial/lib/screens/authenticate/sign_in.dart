@@ -1,3 +1,4 @@
+import 'package:brew_crew_tutorial/models/user.dart';
 import 'package:brew_crew_tutorial/screens/authenticate/auth_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -15,6 +16,7 @@ class _SignInState extends State<SignIn> {
   final _formKey = GlobalKey<FormState>();
   String email = '';
   String password = '';
+  String error = '';
 
   @override
   Widget build(BuildContext context) {
@@ -79,6 +81,19 @@ class _SignInState extends State<SignIn> {
                   if (_formKey.currentState!.validate()) {
                     print(email);
                     print(password);
+                    dynamic result = await authNotifier
+                        .signInWithEmailAndPassword(email, password);
+                    if (result is! AppUser) {
+                      try {
+                        // the returned Firebase error object has two keys: code and message.
+                        error = result.message;
+                      } catch (e) {
+                        // if the HTTP API call failed unpredictably
+                        print(e);
+                        error = 'Couldn\'t sign in with those credentials.';
+                      }
+                      setState(() => error = error);
+                    } // no need for an else, because if else --> it automatically signs the user in.
                   }
                 },
                 style: ElevatedButton.styleFrom(
@@ -87,6 +102,8 @@ class _SignInState extends State<SignIn> {
                 child: const Text('Sign in',
                     style: TextStyle(color: Colors.white)),
               ),
+              const SizedBox(height: 12.0),
+              Text(error, style: TextStyle(color: Colors.red)),
             ],
           ),
         ),

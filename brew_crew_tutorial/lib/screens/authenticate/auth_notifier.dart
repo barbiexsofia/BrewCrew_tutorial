@@ -32,11 +32,23 @@ class AuthNotifier extends ChangeNotifier {
       );
       User? user = result.user;
       _currentUser = _userFromFirebaseUser(user);
-      print("DEBUG BELOW:");
-      debugPrint("$_currentUser");
-      if (_currentUser is AppUser) {
-        print('_currentUser is AppUser, truuuuueee');
-      }
+      notifyListeners();
+      return _currentUser;
+    } catch (e) {
+      print(e.toString());
+      return e;
+    }
+  }
+
+  // Sign in with email & password
+  Future signInWithEmailAndPassword(String email, String password) async {
+    try {
+      UserCredential result = await _auth.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+      User? user = result.user;
+      _currentUser = _userFromFirebaseUser(user);
       notifyListeners();
       return _currentUser;
     } catch (e) {
