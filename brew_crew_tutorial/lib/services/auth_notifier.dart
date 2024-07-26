@@ -1,3 +1,4 @@
+import 'package:brew_crew_tutorial/services/database.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:brew_crew_tutorial/models/user.dart';
@@ -30,6 +31,10 @@ class AuthNotifier extends ChangeNotifier {
       );
       User? user = result.user;
       _currentUser = _userFromFirebaseUser(user);
+
+      // Create a new document in the database for the new user
+      await DatabaseService(uid: _currentUser!.uid)
+          .updateUserData('0', 'new crew member', 100);
       notifyListeners();
       return _currentUser;
     } catch (e) {
