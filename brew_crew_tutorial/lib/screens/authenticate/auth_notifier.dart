@@ -1,3 +1,5 @@
+import 'dart:js_interop';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:brew_crew_tutorial/models/user.dart';
@@ -21,12 +23,29 @@ class AuthNotifier extends ChangeNotifier {
     return user != null ? AppUser(uid: user.uid) : null;
   }
 
-  Future<void> signOut() async {
-    await _auth.signOut();
-    _currentUser = null;
-    notifyListeners();
+  // Register with email & password
+  Future registerWithEmailAndPassword(String email, String password) async {
+    try {
+      UserCredential result = await _auth.createUserWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+      User? user = result.user;
+      _currentUser = _userFromFirebaseUser(user);
+      print("DEBUG BELOW:");
+      debugPrint("$_currentUser");
+      if (_currentUser is AppUser) {
+        print('_currentUser is AppUser, truuuuueee');
+      }
+      notifyListeners();
+      return _currentUser;
+    } catch (e) {
+      print(e.toString());
+      return e;
+    }
   }
 
+  // Sign in anonimously
   Future<AppUser?> signInAnon() async {
     try {
       UserCredential result = await _auth.signInAnonymously();
@@ -38,5 +57,12 @@ class AuthNotifier extends ChangeNotifier {
       print(e.toString());
       return null;
     }
+  }
+
+  // Sign out
+  Future<void> signOut() async {
+    await _auth.signOut();
+    _currentUser = null;
+    notifyListeners();
   }
 }
