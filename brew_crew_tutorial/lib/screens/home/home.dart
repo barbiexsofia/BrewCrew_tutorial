@@ -3,6 +3,7 @@ import 'package:brew_crew_tutorial/services/auth_notifier.dart';
 import 'package:brew_crew_tutorial/services/database.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
+import 'package:brew_crew_tutorial/models/brew.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});
