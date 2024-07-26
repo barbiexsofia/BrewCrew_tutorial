@@ -1,3 +1,4 @@
+import 'package:brew_crew_tutorial/models/brew.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
@@ -19,24 +20,42 @@ class DatabaseService extends ChangeNotifier {
     });
   }
 
+  // Brew list from snapshot
+  List<Brew> _brewListFromSnapshot(QuerySnapshot snapshot) {
+    // ".documents" is deprecated, use ".docs"
+    return snapshot.docs.map((doc) {
+      // Safely cast the document data to a Map<String, dynamic>?
+      final data = doc.data() as Map<String, dynamic>?;
+
+      return Brew(
+        name: data?['name'] ?? '',
+        strength: data?['strength'] ?? 0,
+        sugars: data?['sugars'] ?? '0',
+      );
+    }).toList();
+  }
+
   // fetch brews once
-  Future<QuerySnapshot> fetchBrews() async {
-    return await brewCollection.get();
+  Future<List<Brew>> fetchBrews() async {
+    // Fetch the snapshot
+    QuerySnapshot snapshot = await brewCollection.get();
+    // Convert the snapshot to a list of Brew objects
+    return _brewListFromSnapshot(snapshot);
   }
 }
 
 class BrewNotifier extends ChangeNotifier {
   final DatabaseService databaseService;
-  QuerySnapshot? _brewsSnapshot; // Holds the query result
+  List<Brew> _brews = []; // Holds the list of Brew objects
 
   BrewNotifier({required this.databaseService}) {
     _fetchBrews();
   }
 
-  QuerySnapshot? get brewsSnapshot => _brewsSnapshot; // Getter for snapshot
+  List<Brew> get brews => _brews; // Getter for the list of Brew objects
 
   Future<void> _fetchBrews() async {
-    _brewsSnapshot = await databaseService.fetchBrews();
+    _brews = await databaseService.fetchBrews();
     notifyListeners(); // Notify listeners when data is fetched
   }
 

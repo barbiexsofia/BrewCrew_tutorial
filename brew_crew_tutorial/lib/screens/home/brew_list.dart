@@ -14,31 +14,27 @@ class _BrewListState extends State<BrewList> {
   Widget build(BuildContext context) {
     final brewNotifier = Provider.of<BrewNotifier>(context);
 
-    final querySnapshot = brewNotifier.brewsSnapshot;
+    final brews = brewNotifier.brews; // Get the list of Brew objects
 
-    // Check if QuerySnapshot is null
-    if (querySnapshot == null) {
-      return const Center(child: CircularProgressIndicator());
+    // Print data for each Brew
+    for (var brew in brews) {
+      print({
+        'name': brew.name,
+        'strength': brew.strength,
+        'sugars': brew.sugars,
+      });
     }
 
-    final docs = querySnapshot.docs;
-
-    // Print data for each document
-    for (var doc in docs) {
-      final data = doc.data() as Map<String, dynamic>?;
-      print(data);
-    }
-
-    return docs.isEmpty
+    return brews.isEmpty
         ? const Center(child: Text('No brews available.'))
         : ListView.builder(
-            itemCount: docs.length,
+            itemCount: brews.length,
             itemBuilder: (context, index) {
-              final data = docs[index].data() as Map<String, dynamic>?;
+              final brew = brews[index];
               return ListTile(
-                title: Text(data?['name'] ?? 'No name'),
-                subtitle:
-                    Text('Takes ${data?['sugars'] ?? 'unknown'} sugar(s).'),
+                title: Text(brew.name),
+                subtitle: Text(
+                    'Takes ${brew.sugars} sugar(s). Strength: ${brew.strength}'),
               );
             },
           );
