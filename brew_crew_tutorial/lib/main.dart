@@ -1,5 +1,5 @@
 import 'package:brew_crew_tutorial/firebase_options.dart';
-import 'package:brew_crew_tutorial/screens/authenticate/auth_notifier.dart';
+import 'package:brew_crew_tutorial/services/auth_notifier.dart';
 import 'package:brew_crew_tutorial/screens/wrapper.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';

@@ -1,5 +1,5 @@
-import 'package:brew_crew_tutorial/models/user.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+//import 'package:brew_crew_tutorial/models/user.dart';
+//import 'package:firebase_auth/firebase_auth.dart';
 
 /* class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;

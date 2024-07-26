@@ -1,4 +1,4 @@
-import 'package:brew_crew_tutorial/screens/authenticate/auth_notifier.dart';
+import 'package:brew_crew_tutorial/services/auth_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

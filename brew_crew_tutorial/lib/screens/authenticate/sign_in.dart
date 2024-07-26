@@ -1,5 +1,5 @@
 import 'package:brew_crew_tutorial/models/user.dart';
-import 'package:brew_crew_tutorial/screens/authenticate/auth_notifier.dart';
+import 'package:brew_crew_tutorial/services/auth_notifier.dart';
 import 'package:brew_crew_tutorial/shared/constants.dart';
 import 'package:brew_crew_tutorial/shared/loading.dart';
 import 'package:flutter/material.dart';
