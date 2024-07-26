@@ -12,13 +12,9 @@ class Wrapper extends StatelessWidget {
     final authNotifier = Provider.of<AuthNotifier>(context);
     final user = authNotifier.currentUser;
 
-    print('Wrapper rebuild with user: ${user?.uid}');
-
     if (user == null) {
-      print("Wrapper says: user is null");
       return Authenticate();
     } else {
-      print("Wrapper says: user is not null!");
       return Home();
     }
   }
