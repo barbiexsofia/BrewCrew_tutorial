@@ -1,4 +1,5 @@
 import 'package:brew_crew_tutorial/screens/home/brew_list.dart';
+import 'package:brew_crew_tutorial/screens/home/settings_form.dart';
 import 'package:brew_crew_tutorial/services/auth_notifier.dart';
 import 'package:brew_crew_tutorial/services/database.dart';
 import 'package:provider/provider.dart';
@@ -15,10 +16,13 @@ class Home extends StatelessWidget {
     void showSettingsPanel() {
       showModalBottomSheet(
           context: context,
-          builder: (context) {
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(0)),
+          builder: (BuildContext context) {
             return Container(
-              padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 60.0),
-              child: const Text('bottom sheet'),
+              width: double.infinity,
+              padding:
+                  const EdgeInsets.symmetric(vertical: 20.0, horizontal: 60.0),
+              child: const SettingsForm(),
             );
           });
     }
