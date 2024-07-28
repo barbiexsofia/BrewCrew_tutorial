@@ -118,7 +118,7 @@ class _SignInState extends State<SignIn> {
                           style: TextStyle(color: Colors.white)),
                     ),
                     const SizedBox(height: 12.0),
-                    Text(error, style: TextStyle(color: Colors.red)),
+                    Text(error, style: const TextStyle(color: Colors.red)),
                   ],
                 ),
               ),

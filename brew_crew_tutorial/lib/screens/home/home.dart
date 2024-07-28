@@ -12,12 +12,12 @@ class Home extends StatelessWidget {
     final authNotifier = Provider.of<AuthNotifier>(context);
     final user = authNotifier.currentUser;
 
-    void _showSettingsPanel() {
+    void showSettingsPanel() {
       showModalBottomSheet(
           context: context,
           builder: (context) {
             return Container(
-              padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 60.0),
+              padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 60.0),
               child: const Text('bottom sheet'),
             );
           });
@@ -45,7 +45,7 @@ class Home extends StatelessWidget {
             TextButton.icon(
               icon: const Icon(Icons.settings),
               label: const Text('settings'),
-              onPressed: () => _showSettingsPanel(),
+              onPressed: () => showSettingsPanel(),
             ),
           ],
         ),

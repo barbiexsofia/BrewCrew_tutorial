@@ -13,9 +13,9 @@ class Wrapper extends StatelessWidget {
     final user = authNotifier.currentUser;
 
     if (user == null) {
-      return Authenticate();
+      return const Authenticate();
     } else {
-      return Home();
+      return const Home();
     }
   }
 }

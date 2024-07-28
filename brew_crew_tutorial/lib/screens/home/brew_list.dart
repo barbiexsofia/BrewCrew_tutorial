@@ -18,11 +18,11 @@ class _BrewListState extends State<BrewList> {
     final brews = brewNotifier.brews; // Get the list of Brew objects
 
     // Print data for each Brew
-    brews.forEach((brew) {
+    for (var brew in brews) {
       print(brew.name);
       print(brew.strength);
       print(brew.sugars);
-    });
+    }
 
     return brews.isEmpty
         ? const Center(child: Text('No brews available.'))
