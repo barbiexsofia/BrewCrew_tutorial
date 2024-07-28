@@ -14,8 +14,8 @@ class _SettingsFormState extends State<SettingsForm> {
 
   // form values
   String? _currentName;
-  String? _currentSugars;
-  int? _currentStrength;
+  String? _currentSugars = '0';
+  int _currentStrength = 100;
 
   @override
   Widget build(BuildContext context) {
@@ -48,8 +48,16 @@ class _SettingsFormState extends State<SettingsForm> {
             onChanged: (val) => setState(() => _currentSugars = val as String),
           ),
           const SizedBox(height: 20.0),
-
-          //slider for the strength
+          Slider(
+            value: _currentStrength.toDouble(),
+            activeColor: Colors.brown[_currentStrength],
+            inactiveColor: Colors.brown[_currentStrength],
+            min: 100,
+            max: 900,
+            divisions: 8,
+            onChanged: (val) => setState(() => _currentStrength = val.round()),
+          ),
+          const SizedBox(height: 20.0),
           //button
           ElevatedButton(
               onPressed: () async {
