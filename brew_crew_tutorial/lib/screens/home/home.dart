@@ -3,7 +3,6 @@ import 'package:brew_crew_tutorial/screens/home/settings_form.dart';
 import 'package:brew_crew_tutorial/services/auth_notifier.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
-import 'package:brew_crew_tutorial/services/database.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});
@@ -11,7 +10,6 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final authNotifier = Provider.of<AuthNotifier>(context);
-    final user = authNotifier.currentUser;
 
     void showSettingsPanel() {
       showModalBottomSheet(
@@ -49,7 +47,12 @@ class Home extends StatelessWidget {
           ),
         ],
       ),
-      body: BrewList(),
+      body: Container(
+        decoration: const BoxDecoration(
+            image: DecorationImage(
+                image: AssetImage('assets/coffee_bg.png'), fit: BoxFit.cover)),
+        child: const BrewList(),
+      ),
     );
   }
 }
