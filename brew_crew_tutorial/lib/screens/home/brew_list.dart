@@ -1,35 +1,22 @@
 import 'package:brew_crew_tutorial/screens/home/brew_tile.dart';
-import 'package:brew_crew_tutorial/services/database.dart';
-import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter/material.dart';
+import 'package:brew_crew_tutorial/services/database.dart';
 
-class BrewList extends StatefulWidget {
+class BrewList extends StatelessWidget {
   const BrewList({super.key});
 
-  @override
-  State<BrewList> createState() => _BrewListState();
-}
-
-class _BrewListState extends State<BrewList> {
   @override
   Widget build(BuildContext context) {
     final brewNotifier = Provider.of<BrewNotifier>(context);
 
-    final brews = brewNotifier.brews; // Get the list of Brew objects
-
-    // Print data for each Brew
-    for (var brew in brews) {
-      print(brew.name);
-      print(brew.strength);
-      print(brew.sugars);
-    }
-
-    return brews.isEmpty
+    return brewNotifier.brews.isEmpty
         ? const Center(child: Text('No brews available.'))
         : ListView.builder(
-            itemCount: brews.length,
+            itemCount: brewNotifier.brews.length,
             itemBuilder: (context, index) {
-              return BrewTile(brew: brews[index]);
-            });
+              return BrewTile(brew: brewNotifier.brews[index]);
+            },
+          );
   }
 }
