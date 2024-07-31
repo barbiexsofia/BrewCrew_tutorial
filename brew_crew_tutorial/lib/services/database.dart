@@ -12,7 +12,11 @@ class DatabaseService {
   final CollectionReference brewCollection =
       FirebaseFirestore.instance.collection('brews');
 
-  Future<void> updateUserData(String name, String sugars, int strength) async {
+  Future<void> updateUserData({
+    String? name,
+    String? sugars,
+    int? strength,
+  }) async {
     return await brewCollection.doc(uid).set({
       'name': name,
       'sugars': sugars,
@@ -64,8 +68,8 @@ class DatabaseService {
       final data = doc.data() as Map<String, dynamic>;
       return Brew(
         name: data['name'] ?? '',
-        strength: data['strength'] ?? 0,
         sugars: data['sugars'] ?? '0',
+        strength: data['strength'] ?? 0,
       );
     }).toList();
   }
@@ -92,7 +96,8 @@ class UserNotifier extends ChangeNotifier {
   }
 
   Future<void> updateUserData(String name, String sugars, int strength) async {
-    await databaseService.updateUserData(name, sugars, strength);
+    await databaseService.updateUserData(
+        name: name, sugars: sugars, strength: strength);
     _fetchUserData(); // Fetch updated user data after update
   }
 }
@@ -114,7 +119,8 @@ class BrewNotifier extends ChangeNotifier {
   }
 
   Future<void> updateUserData(String sugars, String name, int strength) async {
-    await databaseService.updateUserData(name, sugars, strength);
+    await databaseService.updateUserData(
+        name: name, sugars: sugars, strength: strength);
     _fetchBrews(); // Refresh the list of brews after updating
   }
 }

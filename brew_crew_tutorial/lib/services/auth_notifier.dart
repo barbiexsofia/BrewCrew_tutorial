@@ -34,7 +34,8 @@ class AuthNotifier extends ChangeNotifier {
 
       // Create a new document in the database for the new user
       await DatabaseService(uid: _currentUser!.uid)
-          .updateUserData('0', 'new crew member', 100);
+          .updateUserData(name: "New crew member", sugars: '0', strength: 100);
+
       notifyListeners();
       return _currentUser;
     } catch (e) {

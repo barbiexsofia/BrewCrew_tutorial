@@ -29,6 +29,13 @@ class _SettingsFormState extends State<SettingsForm> {
 
     final userNotifier = Provider.of<UserNotifier>(context);
     final brewNotifier = Provider.of<BrewNotifier>(context);
+    // Add debug prints to understand what values are being used
+    print("Current Sugars: $_currentSugars");
+    print("User Data Sugars: ${userNotifier.userData?.sugars}");
+    if (userNotifier.userData == null) {
+      print("userNotifier.userData is null");
+    }
+    print(user.uid);
 
     return userNotifier.userData == null
         ? const Loading()
